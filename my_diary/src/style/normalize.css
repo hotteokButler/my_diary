@@ -351,3 +351,12 @@ template {
 [hidden] {
   display: none;
 }
+
+/* 추가
+   ========================================================================== */
+button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
