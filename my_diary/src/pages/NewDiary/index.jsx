@@ -1,7 +1,9 @@
 import React from 'react';
 
+import MainLayout from '../../layout/MainLayout';
+
 function NewDiary() {
-  return <div>NewDiary</div>;
+  return <MainLayout>NewDiary</MainLayout>;
 }
 
 export default NewDiary;

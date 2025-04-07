@@ -3,11 +3,11 @@ import React from 'react';
 import Header from '../../components/Header';
 import * as S from './mainLayout.styled';
 
-function MainLayout({ children }) {
+function MainLayout({ children, headerData }) {
   return (
     <S.MainWrapper>
       <S.MainCon>
-        <Header />
+        <Header header={headerData} />
 
         {children}
       </S.MainCon>

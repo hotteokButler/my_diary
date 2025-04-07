@@ -3,10 +3,17 @@ import styled, { css } from 'styled-components';
 import { NEGATIVE, POSITIVE, PRIMARY } from '../../constants/color-map';
 
 export const Button = styled.button`
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.4rem 1rem;
   border-radius: 0.2rem;
   font-size: 1.3rem;
+
+  svg {
+    font-size: 1rem;
+    padding: 0.2rem 0;
+  }
 
   ${({ $type }) => {
     switch ($type) {
