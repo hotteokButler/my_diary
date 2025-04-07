@@ -10,7 +10,7 @@ function Header({ header }) {
   return (
     <S.HeaderWarp>
       <Button text={header.leftChild ? header.leftChild : <FaChevronLeft />} type="DEFAULT" />
-      <S.HeaderDate>{header.title}</S.HeaderDate>
+      <S.HeaderDate>{header.title || ''}</S.HeaderDate>
       <Button text={header.leftChild ? header.rightChild : <FaChevronRight />} type="DEFAULT" />
     </S.HeaderWarp>
   );
