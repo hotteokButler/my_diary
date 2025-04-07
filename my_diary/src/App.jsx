@@ -10,7 +10,7 @@ function App() {
   return (
     <MainLayout>
       <Routes>
-        <Route path="/" index element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/new" element={<NewDiary />} />
         <Route path="/diary/:id" element={<Diary />} />
         <Route path="*" element={<NotFound />} />
