@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Filter from '../../components/Filter';
 import Header from '../../components/Header';
 import * as S from './mainLayout.styled';
 
@@ -8,6 +9,7 @@ function MainLayout({ children, headerData }) {
     <S.MainWrapper>
       <S.MainCon>
         <Header header={headerData} />
+        <Filter />
 
         {children}
       </S.MainCon>

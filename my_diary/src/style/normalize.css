@@ -354,7 +354,8 @@ template {
 
 /* 추가
    ========================================================================== */
-button {
+button,
+select {
   outline: none;
   border: none;
   background: none;
