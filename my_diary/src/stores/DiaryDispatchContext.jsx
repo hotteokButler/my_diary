@@ -1,9 +1,7 @@
 import { createContext } from 'react';
 
-const DiaryDispatchContext = createContext();
+export const DiaryDispatchContext = createContext();
 
-function ProvideDiaryDispatchContext({ children, dispatchFn }) {
+export function ProvideDiaryDispatchContext({ children, dispatchFn }) {
   return <DiaryDispatchContext.Provider value={dispatchFn}>{children}</DiaryDispatchContext.Provider>;
 }
-
-export default ProvideDiaryDispatchContext;

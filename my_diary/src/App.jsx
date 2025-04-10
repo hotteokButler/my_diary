@@ -7,8 +7,8 @@ import Home from './pages/Home';
 import NewDiary from './pages/NewDiary';
 import NotFound from './pages/NotFound';
 import { mockData, reducer } from './stores/diary_reducer';
-import ProvideDiaryDispatchContext from './stores/DiaryDispatchContext';
-import ProvideDiaryContext from './stores/DiaryStateContext';
+import { ProvideDiaryDispatchContext } from './stores/DiaryDispatchContext';
+import { ProvideDiaryContext } from './stores/DiaryStateContext';
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);

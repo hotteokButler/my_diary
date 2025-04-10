@@ -1,7 +1,8 @@
 export const mockData = [
-  { id: 1, emotinoID: 1, createdDate: new Date().getTime(), content: '1번 일기 내용' },
-  { id: 2, emotinoID: 2, createdDate: new Date().getTime(), content: '2번 일기 내용' },
-  { id: 3, emotinoID: 3, createdDate: new Date().getTime(), content: '3번 일기 내용' },
+  { id: 1, emotionID: 1, createdDate: new Date().getTime(), content: '1번 일기 내용' },
+  { id: 2, emotionID: 2, createdDate: new Date().getTime(), content: '2번 일기 내용' },
+  { id: 3, emotionID: 3, createdDate: new Date().getTime(), content: '3번 일기 내용' },
+  { id: 4, emotionID: 4, createdDate: new Date().getTime(), content: '4번 일기 내용' },
 ];
 
 export const reducer = (state, action) => {
