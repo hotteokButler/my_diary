@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import NewDiary from './pages/NewDiary';
 import NotFound from './pages/NotFound';
 import { mockData, reducer } from './stores/diary_reducer';
+import ProvideDiaryDispatchContext from './stores/DiaryDispatchContext';
+import ProvideDiaryContext from './stores/DiaryStateContext';
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
@@ -40,24 +42,17 @@ function App() {
   };
 
   return (
-    <div>
-      <button type="button" onClick={() => onCreate(new Date().getTime(), 4, '4번 일기입니다.')}>
-        추가
-      </button>
-      <button type="button" onClick={() => onUpdate(2, new Date().getTime(), 4, '2번 수정일기입니다.')}>
-        수정
-      </button>
-      <button type="button" onClick={() => onDelete(2)}>
-        삭제
-      </button>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/new" element={<NewDiary />} />
-        <Route path="/diary/:id" element={<Diary />} />
-        <Route path="/edit/:id" element={<Eidt />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
+    <ProvideDiaryContext data={data}>
+      <ProvideDiaryDispatchContext dispatchFn={{ onCreate, onUpdate, onDelete }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new" element={<NewDiary />} />
+          <Route path="/diary/:id" element={<Diary />} />
+          <Route path="/edit/:id" element={<Eidt />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ProvideDiaryDispatchContext>
+    </ProvideDiaryContext>
   );
 }
 
