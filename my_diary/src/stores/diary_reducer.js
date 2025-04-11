@@ -5,6 +5,9 @@ export const mockData = [
   { id: 4, emotionID: 4, createdDate: new Date('2025-04-09').getTime(), content: '4번 일기 내용' },
   { id: 5, emotionID: 5, createdDate: new Date('2025-04-10').getTime(), content: '5번 일기 내용' },
   { id: 6, emotionID: 6, createdDate: new Date('2025-04-11').getTime(), content: '6번 일기 내용' },
+  { id: 7, emotionID: 7, createdDate: new Date('2025-02-09').getTime(), content: '2월 일기 내용' },
+  { id: 8, emotionID: 8, createdDate: new Date('2025-02-10').getTime(), content: '2월 일기 내용' },
+  { id: 9, emotionID: 9, createdDate: new Date('2025-02-11').getTime(), content: '2월 일기 내용' },
 ];
 
 export const reducer = (state, action) => {
