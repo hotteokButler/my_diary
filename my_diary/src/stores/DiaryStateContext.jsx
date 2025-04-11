@@ -1,7 +1,9 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 
 export const DiaryStateContext = createContext();
 
 export function ProvideDiaryContext({ children, data }) {
-  return <DiaryStateContext.Provider value={data}>{children}</DiaryStateContext.Provider>;
+  const [diary, setDiary] = useState(data);
+
+  return <DiaryStateContext.Provider value={{ diary, setDiary }}>{children}</DiaryStateContext.Provider>;
 }

@@ -6,9 +6,9 @@ import { DiaryStateContext } from '../../stores/DiaryStateContext';
 import getMonthlyData from '../../util/get-monthly-data';
 
 function Home() {
-  const data = useContext(DiaryStateContext);
+  const { diary } = useContext(DiaryStateContext);
   const [pivotDate, setPivotDate] = useState(new Date());
-  const filteredData = getMonthlyData(pivotDate, data);
+  const filteredData = getMonthlyData(pivotDate, diary);
 
   const onDecreaseMonth = useCallback(() => {
     setPivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() - 1));
