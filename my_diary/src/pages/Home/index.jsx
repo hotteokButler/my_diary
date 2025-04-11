@@ -1,16 +1,24 @@
-import { useContext } from 'react';
+import { useCallback, useContext, useState } from 'react';
 
 import DiaryList from '../../components/DiaryList';
 import MainLayout from '../../layout/MainLayout';
 import { DiaryStateContext } from '../../stores/DiaryStateContext';
 
 function Home() {
-  const date = new Date();
-  const today = `${date.getFullYear()}년 ${date.getMonth() + 1}월`;
   const data = useContext(DiaryStateContext);
+  const [pivotDate, setPivotDate] = useState(new Date());
+
+  const onDecreaseMonth = useCallback(() => {
+    setPivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() - 1));
+  }, [pivotDate]);
+  const onIncreaseMonth = useCallback(() => {
+    setPivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() + 1));
+  }, [pivotDate]);
 
   const headerData = {
-    title: today,
+    title: `${pivotDate.getFullYear()}년 ${pivotDate.getMonth() + 1}월`,
+    leftChildFn: onDecreaseMonth,
+    rightChildFn: onIncreaseMonth,
   };
   return (
     <MainLayout headerData={headerData}>
