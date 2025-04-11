@@ -30,9 +30,6 @@ function Filter() {
         <option value="oldest" defaultChecked>
           오래된순
         </option>
-        <option value="this_month" defaultChecked>
-          이번달
-        </option>
       </select>
 
       <Button text="새 일기쓰기" type="POSITIVE" />
