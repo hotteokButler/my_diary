@@ -6,7 +6,7 @@ function DiaryList({ diaryList }) {
     return <S.NoDiaryList>등록된 다이어리가 없습니다.</S.NoDiaryList>;
   }
 
-  return <S.DiaryListWrap>{diaryList && diaryList.map((item) => <DiaryItem key={item.id} item={item} />)}</S.DiaryListWrap>;
+  return <S.DiaryListWrap>{diaryList && diaryList.map((item) => <DiaryItem key={item.id} {...item} />)}</S.DiaryListWrap>;
 }
 
 export default DiaryList;

@@ -6,22 +6,22 @@ import getRandomPastelColor from '../../util/get-random-pastel-color';
 import Button from '../Button';
 import * as S from '../DiaryList/diaryList.styled';
 
-function DiaryItem({ item }) {
+function DiaryItem({ id, emotionID, createdDate, content }) {
   const navigate = useNavigate();
 
-  if (!item) return null;
+  if (!id) return null;
 
   return (
-    <S.DiaryList key={item.id}>
+    <S.DiaryList key={id}>
       <S.DiaryImg $color={getRandomPastelColor()}>
-        <img src={getEmotionImages(item.emotionID)} alt="" />
+        <img src={getEmotionImages(emotionID)} alt="" />
       </S.DiaryImg>
       <S.DiaryLiContents>
         <div>
-          <p>{new Date(item.createdDate).toLocaleDateString()}</p>
-          <p>{item.content}</p>
+          <p>{new Date(createdDate).toLocaleDateString()}</p>
+          <p>{content}</p>
         </div>
-        <Button onClick={() => navigate(`/edit/${item.id}`)} text="수정하기" />
+        <Button onClick={() => navigate(`/edit/${id}`)} text="수정하기" />
       </S.DiaryLiContents>
     </S.DiaryList>
   );
