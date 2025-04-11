@@ -16,8 +16,8 @@ function DiaryItem({ id, emotionID, createdDate, content }) {
       <S.DiaryImg $color={getRandomPastelColor()}>
         <img src={getEmotionImages(emotionID)} alt="" />
       </S.DiaryImg>
-      <S.DiaryLiContents onClick={() => navigate(`/diary/${id}`)}>
-        <div>
+      <S.DiaryLiContents>
+        <div onClick={() => navigate(`/diary/${id}`)}>
           <p>{new Date(createdDate).toLocaleDateString()}</p>
           <p>{content}</p>
         </div>
