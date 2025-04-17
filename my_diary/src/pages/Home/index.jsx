@@ -1,4 +1,5 @@
 import { useCallback, useContext, useState } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 
 import DiaryList from '../../components/DiaryList';
 import MainLayout from '../../layout/MainLayout';
@@ -20,6 +21,8 @@ function Home() {
   const headerData = {
     title: `${pivotDate.getFullYear()}년 ${pivotDate.getMonth() + 1}월`,
     leftChildFn: onDecreaseMonth,
+    leftChild: <FaChevronLeft />,
+    rightChild: <FaChevronRight />,
     rightChildFn: onIncreaseMonth,
   };
   return (

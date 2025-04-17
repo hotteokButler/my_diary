@@ -9,9 +9,9 @@ function Header({ header }) {
 
   return (
     <S.HeaderWarp>
-      <Button onClick={header.leftChildFn && header.leftChildFn} text={header.leftChild ? header.leftChild : <FaChevronLeft />} type="DEFAULT" />
+      {header.leftChild && <Button onClick={header.leftChildFn && header.leftChildFn} text={header.leftChild} type="DEFAULT" />}
       <S.HeaderDate>{header.title || ''}</S.HeaderDate>
-      <Button onClick={header.rightChildFn && header.rightChildFn} text={header.leftChild ? header.rightChild : <FaChevronRight />} type="DEFAULT" />
+      {header.rightChild && <Button onClick={header.rightChildFn && header.rightChildFn} text={header.rightChild} type="DEFAULT" />}
     </S.HeaderWarp>
   );
 }
