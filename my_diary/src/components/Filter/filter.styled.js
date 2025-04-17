@@ -4,6 +4,7 @@ export const FilterWrap = styled.div`
   display: flex;
   align-items: stretch;
   gap: 1rem;
+  padding: 0 1rem;
   margin-bottom: 1rem;
   select {
     background: #eee;

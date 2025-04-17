@@ -8,8 +8,11 @@ export const DiaryListWrap = styled.ul`
 export const DiaryList = styled.li`
   display: flex;
   gap: 1rem;
-  padding: 1rem 0;
+  padding: 1rem;
   border-bottom: 1px solid #efefef;
+  &:hover {
+    background-color: rgba(239, 239, 239, 0.3);
+  }
 `;
 
 export const DiaryImg = styled.div`
@@ -32,6 +35,8 @@ export const DiaryLiContents = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   flex: 7;
+  cursor: pointer;
+
   div {
     display: flex;
     flex-direction: column;
