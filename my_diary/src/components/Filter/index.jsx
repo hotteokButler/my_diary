@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { MdFilterAlt } from 'react-icons/md';
 
 import { DiaryStateContext } from '../../stores/DiaryStateContext';
 import Button from '../Button';
