@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import { DiaryStateContext } from '../../stores/DiaryStateContext';
 import Button from '../Button';
@@ -7,6 +8,7 @@ import * as S from './filter.styled';
 function Filter() {
   const { diary, setDiary } = useContext(DiaryStateContext);
   const [sortType, setSortType] = useState('latest');
+  const navigate = useNavigate();
 
   const getSortedDate = (type) =>
     diary.toSorted((a, b) => {
@@ -35,7 +37,7 @@ function Filter() {
         <option value="oldest">오래된순</option>
       </select>
 
-      <Button text="새 일기쓰기" type="POSITIVE" />
+      <Button text="새 일기쓰기" type="POSITIVE" onClick={() => navigate('/new')} />
     </S.FilterWrap>
   );
 }
