@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { MdFilterAlt } from 'react-icons/md';
 
 import { DiaryStateContext } from '../../stores/DiaryStateContext';
 import Button from '../Button';
@@ -8,28 +9,31 @@ function Filter() {
   const { diary, setDiary } = useContext(DiaryStateContext);
   const [sortType, setSortType] = useState('latest');
 
-  const getSortedDate = () =>
+  const getSortedDate = (type) =>
     diary.toSorted((a, b) => {
-      if (sortType === 'latest') {
-        return a.createdDate - b.createdDate;
-      } else if (sortType === 'oldest') {
+      if (type === 'latest') {
         return b.createdDate - a.createdDate;
+      } else if (type === 'oldest') {
+        return a.createdDate - b.createdDate;
       }
     });
 
   const onChangeSortType = (e) => {
     setSortType(e.target.value);
-    setDiary(() => getSortedDate());
+    setDiary(() => getSortedDate(sortType));
   };
+
+  useEffect(() => {
+    diary && setDiary(() => getSortedDate(sortType));
+  }, [sortType]);
+
   return (
     <S.FilterWrap>
       <select name="filter" id="" onChange={onChangeSortType}>
         <option value="latest" defaultChecked>
           최신순
         </option>
-        <option value="oldest" defaultChecked>
-          오래된순
-        </option>
+        <option value="oldest">오래된순</option>
       </select>
 
       <Button text="새 일기쓰기" type="POSITIVE" />
