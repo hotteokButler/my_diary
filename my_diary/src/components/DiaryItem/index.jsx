@@ -6,7 +6,7 @@ import getRandomPastelColor from '../../util/get-random-pastel-color';
 import Button from '../Button';
 import * as S from '../DiaryList/diaryList.styled';
 
-function DiaryItem({ id, emotionID, createdDate, content }) {
+function DiaryItem({ id, emotionId, createdDate, content }) {
   const navigate = useNavigate();
 
   if (!id) return null;
@@ -14,7 +14,7 @@ function DiaryItem({ id, emotionID, createdDate, content }) {
   return (
     <S.DiaryList key={id}>
       <S.DiaryImg $color={getRandomPastelColor()}>
-        <img src={getEmotionImages(emotionID)} alt="" />
+        <img src={getEmotionImages(emotionId)} alt="" />
       </S.DiaryImg>
       <S.DiaryLiContents>
         <div onClick={() => navigate(`/diary/${id}`)}>

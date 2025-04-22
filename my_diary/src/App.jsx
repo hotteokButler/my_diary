@@ -12,13 +12,13 @@ import { ProvideDiaryContext } from './stores/DiaryStateContext';
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
-  const idRef = useRef(4);
 
+  const idRef = useRef(data.length);
   //새로운 일기 추가
   const onCreate = (createdDate, emotionId, content) => {
     dispatch({
       type: 'CREATE',
-      data: { id: idRef.current++, emotionId, createdDate, content },
+      data: { id: ++idRef.current, emotionId, createdDate, content },
     });
   };
   // 기존 일기 수정
@@ -40,13 +40,23 @@ function App() {
       data: id,
     });
   };
+  const sortASC = () => {
+    dispatch({
+      type: 'ASC',
+    });
+  };
+  const sortDESC = () => {
+    dispatch({
+      type: 'DESC',
+    });
+  };
 
   return (
     <ProvideDiaryContext data={data}>
-      <ProvideDiaryDispatchContext dispatchFn={{ onCreate, onUpdate, onDelete }}>
+      <ProvideDiaryDispatchContext dispatchFn={{ onCreate, onUpdate, onDelete, sortASC, sortDESC }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/new" element={<NewDiary />} />
+          <Route path="/new" element={<NewDiary onSubmit={(input) => onCreate(input.createdDate.getTime(), input.emotionId, input.content)} />} />
           <Route path="/diary/:id" element={<Diary />} />
           <Route path="/edit/:id" element={<Eidt />} />
           <Route path="*" element={<NotFound />} />

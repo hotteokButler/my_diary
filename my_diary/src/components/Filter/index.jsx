@@ -1,31 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
+import { DiaryDispatchContext } from '../../stores/DiaryDispatchContext';
 import { DiaryStateContext } from '../../stores/DiaryStateContext';
 import Button from '../Button';
 import * as S from './filter.styled';
 
 function Filter() {
-  const { diary, setDiary } = useContext(DiaryStateContext);
+  const dispatchFn = useContext(DiaryDispatchContext);
+  const diary = useContext(DiaryStateContext);
   const [sortType, setSortType] = useState('latest');
   const navigate = useNavigate();
 
-  const getSortedDate = (type) =>
-    diary.toSorted((a, b) => {
-      if (type === 'latest') {
-        return b.createdDate - a.createdDate;
-      } else if (type === 'oldest') {
-        return a.createdDate - b.createdDate;
-      }
-    });
+  const getSortedDate = (type) => {
+    if (type === 'latest') {
+      dispatchFn.sortASC();
+    }
+    if (type === 'oldest') {
+      dispatchFn.sortDESC();
+    }
+  };
 
   const onChangeSortType = (e) => {
     setSortType(e.target.value);
-    setDiary(() => getSortedDate(sortType));
+    getSortedDate(sortType);
   };
 
   useEffect(() => {
-    diary && setDiary(() => getSortedDate(sortType));
+    diary && getSortedDate(sortType);
   }, [sortType]);
 
   return (

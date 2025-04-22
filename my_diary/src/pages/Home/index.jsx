@@ -7,13 +7,14 @@ import { DiaryStateContext } from '../../stores/DiaryStateContext';
 import getMonthlyData from '../../util/get-monthly-data';
 
 function Home() {
-  const { diary } = useContext(DiaryStateContext);
+  const diary = useContext(DiaryStateContext);
   const [pivotDate, setPivotDate] = useState(new Date());
-  const filteredData = getMonthlyData(pivotDate, diary);
+  let filteredData = getMonthlyData(pivotDate, diary);
 
   const onDecreaseMonth = useCallback(() => {
     setPivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() - 1));
   }, [pivotDate]);
+
   const onIncreaseMonth = useCallback(() => {
     setPivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() + 1));
   }, [pivotDate]);
@@ -25,6 +26,7 @@ function Home() {
     rightChild: <FaChevronRight />,
     rightChildFn: onIncreaseMonth,
   };
+
   return (
     <MainLayout headerData={headerData}>
       <DiaryList diaryList={filteredData} />

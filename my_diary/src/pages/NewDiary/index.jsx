@@ -9,9 +9,9 @@ import emotion_state_data from '../../stores/get-emotion-state';
 import getStringedDate from '../../util/get-stringed-date';
 import * as S from './newDiary.styled';
 
-function NewDiary() {
+function NewDiary({ onSubmit }) {
   const navigate = useNavigate();
-  const [input, setInput] = useState({ emotionID: 1, createdDate: new Date(), content: '' });
+  const [input, setInput] = useState({ emotionId: 1, createdDate: new Date(), content: '' });
 
   const headerData = {
     title: '새 일기 쓰기',
@@ -34,7 +34,8 @@ function NewDiary() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
+    onSubmit(input);
+    navigate('/', { replace: true });
   };
 
   return (
@@ -54,11 +55,11 @@ function NewDiary() {
               <EmotionElem
                 key={elem.id}
                 {...elem}
-                isSelected={elem.id === input.emotionID}
+                isSelected={elem.id === input.emotionId}
                 onClick={() =>
                   onChangeInput({
                     target: {
-                      name: 'emotionID',
+                      name: 'emotionId',
                       value: elem.id,
                     },
                   })
