@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import EmotionElem from '../../components/EmotionElem';
@@ -7,7 +7,7 @@ import getStringedDate from '../../util/get-stringed-date';
 import Button from '../Button';
 import * as S from './editor.styled';
 
-function Editor({ onSubmit }) {
+function Editor({ onSubmit, initData }) {
   const navigate = useNavigate();
   const [input, setInput] = useState({ emotionId: 1, createdDate: new Date(), content: '' });
 
@@ -29,12 +29,19 @@ function Editor({ onSubmit }) {
     onSubmit(input);
     navigate('/', { replace: true });
   };
+
+  useEffect(() => {
+    if (initData) {
+      setInput({ ...initData, createdDate: new Date(Number(initData.createdDate)) });
+    }
+  }, [initData]);
+
   return (
     <S.EditorWrap onSubmit={handleSubmit}>
       <S.EditorCon>
         <h4>오늘의 날짜</h4>
         <label htmlFor="createdDate">
-          <input type="date" name="createdDate" id="createdDate" defaultValue={getStringedDate(input.createdDate)} onChange={onChangeInput} />
+          <input type="date" name="createdDate" id="createdDate" value={getStringedDate(input.createdDate)} onChange={onChangeInput} />
         </label>
       </S.EditorCon>
       <S.EditorCon>
@@ -60,7 +67,7 @@ function Editor({ onSubmit }) {
       </S.EditorCon>
       <S.EditorCon>
         <h4>오늘의 일기</h4>
-        {<S.EmotionTextArea onChange={onChangeInput} name="content" />}
+        {<S.EmotionTextArea onChange={onChangeInput} name="content" value={input.content ? input.content : ''} />}
       </S.EditorCon>
       <S.EmotionButtonWrap>
         <Button text="취소하기" onClick={() => navigate(-1)} />
