@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { FaChevronLeft } from 'react-icons/fa6';
 import { useNavigate, useParams } from 'react-router';
 
+import Editor from '../../components/Editor';
 import MainLayout from '../../layout/MainLayout';
 import { DiaryDispatchContext } from '../../stores/DiaryDispatchContext';
 
@@ -26,7 +27,11 @@ function Eidt() {
     },
   };
 
-  return <MainLayout headerData={headerData}>{params.id}번 일기 수정페이지입니다.</MainLayout>;
+  return (
+    <MainLayout headerData={headerData}>
+      <Editor />
+    </MainLayout>
+  );
 }
 
 export default Eidt;
