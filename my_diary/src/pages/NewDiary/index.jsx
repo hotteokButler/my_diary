@@ -6,10 +6,12 @@ import Button from '../../components/Button';
 import EmotionElem from '../../components/EmotionElem';
 import MainLayout from '../../layout/MainLayout';
 import emotion_state_data from '../../stores/get-emotion-state';
+import getStringedDate from '../../util/get-stringed-date';
 import * as S from './newDiary.styled';
 
 function NewDiary() {
   const [selectedEmotion, setSelectedEmotion] = useState(1);
+  const [input, setInput] = useState({ emotionID: 1, createdDate: new Date(), content: '' });
 
   const checkSelectedEmotion = (id) => {
     setSelectedEmotion(id);
@@ -31,7 +33,7 @@ function NewDiary() {
         <S.NewDiaryCon>
           <h4>오늘의 날짜</h4>
           <label htmlFor="today_date">
-            <input type="date" name="today_date" id="today_date" />
+            <input type="date" name="today_date" id="today_date" defaultValue={getStringedDate(input.createdDate)} />
           </label>
         </S.NewDiaryCon>
         <S.NewDiaryCon>
