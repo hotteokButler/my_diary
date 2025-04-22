@@ -10,30 +10,40 @@ import getStringedDate from '../../util/get-stringed-date';
 import * as S from './newDiary.styled';
 
 function NewDiary() {
-  const [selectedEmotion, setSelectedEmotion] = useState(1);
+  const navigate = useNavigate();
   const [input, setInput] = useState({ emotionID: 1, createdDate: new Date(), content: '' });
 
-  const checkSelectedEmotion = (id) => {
-    setSelectedEmotion(id);
-  };
-
-  const navigate = useNavigate();
   const headerData = {
     title: '새 일기 쓰기',
     leftChildFn: () => navigate(-1),
     leftChild: <FaChevronLeft />,
   };
 
+  const onChangeInput = (e) => {
+    let { name, value } = e.target;
+
+    if (name === 'createdDate') {
+      value = new Date(value);
+    }
+
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(input);
   };
+
   return (
     <MainLayout headerData={headerData}>
       <S.NewDiaryWrap onSubmit={handleSubmit}>
         <S.NewDiaryCon>
           <h4>오늘의 날짜</h4>
-          <label htmlFor="today_date">
-            <input type="date" name="today_date" id="today_date" defaultValue={getStringedDate(input.createdDate)} />
+          <label htmlFor="createdDate">
+            <input type="date" name="createdDate" id="createdDate" defaultValue={getStringedDate(input.createdDate)} onChange={onChangeInput} />
           </label>
         </S.NewDiaryCon>
         <S.NewDiaryCon>
@@ -41,13 +51,25 @@ function NewDiary() {
 
           <S.EmotionList>
             {emotion_state_data.map((elem) => (
-              <EmotionElem key={elem.id} {...elem} isSelected={elem.id === selectedEmotion} onClick={() => checkSelectedEmotion(elem.id)} />
+              <EmotionElem
+                key={elem.id}
+                {...elem}
+                isSelected={elem.id === input.emotionID}
+                onClick={() =>
+                  onChangeInput({
+                    target: {
+                      name: 'emotionID',
+                      value: elem.id,
+                    },
+                  })
+                }
+              />
             ))}
           </S.EmotionList>
         </S.NewDiaryCon>
         <S.NewDiaryCon>
           <h4>오늘의 일기</h4>
-          {<S.EmotionTextArea />}
+          {<S.EmotionTextArea onChange={onChangeInput} />}
         </S.NewDiaryCon>
         <S.EmotionButtonWrap>
           <Button text="취소하기" onClick={() => navigate(-1)} />
