@@ -69,7 +69,7 @@ function NewDiary() {
         </S.NewDiaryCon>
         <S.NewDiaryCon>
           <h4>오늘의 일기</h4>
-          {<S.EmotionTextArea onChange={onChangeInput} />}
+          {<S.EmotionTextArea onChange={onChangeInput} name="content" />}
         </S.NewDiaryCon>
         <S.EmotionButtonWrap>
           <Button text="취소하기" onClick={() => navigate(-1)} />
