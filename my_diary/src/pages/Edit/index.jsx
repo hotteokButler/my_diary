@@ -62,7 +62,7 @@ function Eidt() {
   return (
     <MainLayout headerData={headerData}>
       {currentDiary && (
-        <Editor initData={currentDiary} onSubmit={(input) => onUpdate(params.id, input.createdDate, input.emotionId, input.content)} />
+        <Editor initData={currentDiary} onSubmit={(input) => onUpdate(params.id, input.createdDate.getTime(), input.emotionId, input.content)} />
       )}
     </MainLayout>
   );
