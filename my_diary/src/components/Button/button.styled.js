@@ -9,7 +9,7 @@ export const Button = styled.button`
   padding: 0.5rem 1rem;
   border-radius: 0.2rem;
   font-size: 1.3rem;
-
+  white-space: nowrap;
   svg {
     font-size: 1rem;
     padding: 0.2rem 0;
