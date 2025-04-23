@@ -10,7 +10,7 @@ import { DiaryStateContext } from '../../stores/DiaryStateContext';
 function Eidt() {
   const params = useParams();
   const navigate = useNavigate();
-  const { onDelete } = useContext(DiaryDispatchContext);
+  const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
   const data = useContext(DiaryStateContext);
   const [currentDiary, setCurrentDiary] = useState(null);
 
@@ -59,7 +59,13 @@ function Eidt() {
     currentDiary || setCurrentDiary(getCurrentDiaryItem(params.id));
   }, [params.id]);
 
-  return <MainLayout headerData={headerData}>{currentDiary && <Editor initData={currentDiary} />}</MainLayout>;
+  return (
+    <MainLayout headerData={headerData}>
+      {currentDiary && (
+        <Editor initData={currentDiary} onSubmit={(input) => onUpdate(params.id, input.createdDate, input.emotionId, input.content)} />
+      )}
+    </MainLayout>
+  );
 }
 
 export default Eidt;
