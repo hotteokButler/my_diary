@@ -59,13 +59,15 @@ function Eidt() {
     currentDiary || setCurrentDiary(getCurrentDiaryItem(params.id));
   }, [params.id]);
 
-  return (
-    <MainLayout headerData={headerData}>
-      {currentDiary && (
-        <Editor initData={currentDiary} onSubmit={(input) => onUpdate(params.id, input.createdDate.getTime(), input.emotionId, input.content)} />
-      )}
-    </MainLayout>
-  );
+  const onSubmit = (input) => {
+    if (window.confirm('일기를 정말 수정할까요?')) {
+      onUpdate(params.id, input.createdDate.getTime(), input.emotionId, input.content);
+    }
+
+    return;
+  };
+
+  return <MainLayout headerData={headerData}>{currentDiary && <Editor initData={currentDiary} onSubmit={onSubmit} />}</MainLayout>;
 }
 
 export default Eidt;
