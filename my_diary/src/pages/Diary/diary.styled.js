@@ -41,7 +41,7 @@ export const DiaryEmotion = styled.div`
     text-align: center;
     font-size: 1.1em;
     font-weight: bold;
-    backdrop-filter: sepia(0.5);
+    backdrop-filter: hue-rotate(225deg);
     padding: 0.25em 1em;
     border-radius: 0.2rem;
     overflow: hidden;
