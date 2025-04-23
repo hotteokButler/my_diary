@@ -10,7 +10,7 @@ import { DiaryStateContext } from '../../stores/DiaryStateContext';
 function Eidt() {
   const params = useParams();
   const navigate = useNavigate();
-  const dispatchFn = useContext(DiaryDispatchContext);
+  const { onDelete } = useContext(DiaryDispatchContext);
   const data = useContext(DiaryStateContext);
   const [currentDiary, setCurrentDiary] = useState(null);
 
@@ -37,7 +37,7 @@ function Eidt() {
   const onClickDelete = () => {
     isDelete = window.confirm('일기를 정말 삭제할까요?\n다시 복구되지 않습니다.');
     if (isDelete) {
-      dispatchFn.onDelete(params.id);
+      onDelete(params.id);
       navigate('/', { replace: true });
     } else {
       return;

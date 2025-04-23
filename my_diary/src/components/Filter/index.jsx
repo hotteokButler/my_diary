@@ -7,17 +7,17 @@ import Button from '../Button';
 import * as S from './filter.styled';
 
 function Filter() {
-  const dispatchFn = useContext(DiaryDispatchContext);
+  const { sortASC, sortDESC } = useContext(DiaryDispatchContext);
   const diary = useContext(DiaryStateContext);
   const [sortType, setSortType] = useState('latest');
   const navigate = useNavigate();
 
   const getSortedDate = (type) => {
     if (type === 'latest') {
-      dispatchFn.sortASC();
+      sortASC();
     }
     if (type === 'oldest') {
-      dispatchFn.sortDESC();
+      sortDESC();
     }
   };
 
