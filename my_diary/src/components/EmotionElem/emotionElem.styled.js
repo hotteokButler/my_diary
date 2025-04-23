@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
-import getRandomPastelColor from '../../util/get-random-pastel-color';
-
 export const EmotionElem = styled.li`
   width: calc(20% - 1.4rem);
   border-radius: 0.2rem;
-  background: ${({ $isSelected }) => ($isSelected ? getRandomPastelColor() : '#efefef')};
-  color: #232323;
+  background: ${({ $isSelected }) => ($isSelected ? '#3a3948' : '#efefef')};
+  color: ${({ $isSelected }) => ($isSelected ? '#fff' : '#232323')};
 
   display: flex;
   flex-direction: column;
