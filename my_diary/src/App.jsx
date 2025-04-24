@@ -21,6 +21,20 @@ function App() {
     }
     const parsedData = JSON.parse(storedData);
 
+    if (!Array.isArray(parsedData)) {
+      return;
+    }
+
+    let maxId = 0;
+
+    parsedData.forEach((item) => {
+      if (Number(item.id) > maxId) {
+        maxId = Number(item.id);
+      }
+    });
+
+    idRef.current = maxId;
+
     dispatch({
       type: 'INIT',
       data: parsedData,
