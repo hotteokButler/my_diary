@@ -3,10 +3,10 @@ import { FaChevronLeft } from 'react-icons/fa6';
 import { useNavigate, useParams } from 'react-router';
 
 import Editor from '../../components/Editor';
+import usePageTitle from '../../hook/usePageTitle';
 import MainLayout from '../../layout/MainLayout';
 import { DiaryDispatchContext } from '../../stores/DiaryDispatchContext';
 import { DiaryStateContext } from '../../stores/DiaryStateContext';
-import changeTitle from '../../util/change-page-title';
 
 function Eidt() {
   const { id } = useParams();
@@ -56,8 +56,9 @@ function Eidt() {
     return currentDiaryItem;
   };
 
+  usePageTitle(`${id}번 일기 수정하기`);
+
   useEffect(() => {
-    changeTitle(`${id}번 일기 수정하기`);
     currentDiary || setCurrentDiary(getCurrentDiaryItem(id));
   }, [id]);
 

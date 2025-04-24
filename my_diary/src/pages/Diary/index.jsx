@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FaChevronLeft } from 'react-icons/fa6';
 import { useNavigate, useParams } from 'react-router';
 
+import usePageTitle from '../../hook/usePageTitle';
 import MainLayout from '../../layout/MainLayout';
 import { DiaryStateContext } from '../../stores/DiaryStateContext';
 import emotion_state_data from '../../stores/get-emotion-state';
-import changeTitle from '../../util/change-page-title';
 import getEmotionImages from '../../util/get-emotion-images';
 import getStringedDate from '../../util/get-stringed-date';
 import * as S from './diary.styled';
@@ -17,8 +17,9 @@ function Diary() {
 
   const [diary, setDiary] = useState(null);
 
+  usePageTitle(`${id}번 일기`);
+
   useEffect(() => {
-    changeTitle(`${id}번 일기`);
     data && setDiary(data.find((elem) => String(elem.id) === String(id)));
   }, [data]);
 

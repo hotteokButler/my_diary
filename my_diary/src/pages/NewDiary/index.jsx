@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
 import { FaChevronLeft } from 'react-icons/fa6';
 import { useNavigate } from 'react-router';
 
 import Editor from '../../components/Editor';
+import usePageTitle from '../../hook/usePageTitle';
 import MainLayout from '../../layout/MainLayout';
-import changeTitle from '../../util/change-page-title';
 
 function NewDiary({ onSubmit }) {
   const navigate = useNavigate();
@@ -14,10 +13,7 @@ function NewDiary({ onSubmit }) {
     leftChild: <FaChevronLeft />,
   };
 
-  useEffect(() => {
-    changeTitle('새 일기 쓰기');
-  }, []);
-
+  usePageTitle('새 일기 쓰기');
   return (
     <MainLayout headerData={headerData}>
       <Editor onSubmit={onSubmit} />
