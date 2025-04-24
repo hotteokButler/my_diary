@@ -6,9 +6,10 @@ import Editor from '../../components/Editor';
 import MainLayout from '../../layout/MainLayout';
 import { DiaryDispatchContext } from '../../stores/DiaryDispatchContext';
 import { DiaryStateContext } from '../../stores/DiaryStateContext';
+import changeTitle from '../../util/change-page-title';
 
 function Eidt() {
-  const params = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
   const data = useContext(DiaryStateContext);
@@ -37,7 +38,7 @@ function Eidt() {
   const onClickDelete = () => {
     isDelete = window.confirm('일기를 정말 삭제할까요?\n다시 복구되지 않습니다.');
     if (isDelete) {
-      onDelete(params.id);
+      onDelete(id);
       navigate('/', { replace: true });
     } else {
       return;
@@ -56,12 +57,13 @@ function Eidt() {
   };
 
   useEffect(() => {
-    currentDiary || setCurrentDiary(getCurrentDiaryItem(params.id));
-  }, [params.id]);
+    changeTitle(`${id}번 일기 수정하기`);
+    currentDiary || setCurrentDiary(getCurrentDiaryItem(id));
+  }, [id]);
 
   const onSubmit = (input) => {
     if (window.confirm('일기를 정말 수정할까요?')) {
-      onUpdate(params.id, input.createdDate.getTime(), input.emotionId, input.content);
+      onUpdate(id, input.createdDate.getTime(), input.emotionId, input.content);
     }
 
     return;
