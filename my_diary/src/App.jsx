@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { Route, Routes } from 'react-router';
 
 import Diary from './pages/Diary';
@@ -11,17 +11,20 @@ import { ProvideDiaryDispatchContext } from './stores/DiaryDispatchContext';
 import { ProvideDiaryContext } from './stores/DiaryStateContext';
 
 function App() {
+  const [isLoading, setLoading] = useState(true);
   const [data, dispatch] = useReducer(reducer, []);
   const idRef = useRef(data.length);
 
   useEffect(() => {
     const storedData = localStorage.getItem('diary');
     if (!storedData) {
+      setLoading(false);
       return;
     }
     const parsedData = JSON.parse(storedData);
 
     if (!Array.isArray(parsedData)) {
+      setLoading(false);
       return;
     }
 
@@ -39,6 +42,8 @@ function App() {
       type: 'INIT',
       data: parsedData,
     });
+
+    setLoading(false);
   }, []);
 
   //새로운 일기 추가
@@ -77,6 +82,10 @@ function App() {
       type: 'DESC',
     });
   };
+
+  if (isLoading) {
+    return <div>로딩중입니다...😎</div>;
+  }
 
   return (
     <ProvideDiaryContext data={data}>
