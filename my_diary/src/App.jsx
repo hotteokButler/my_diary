@@ -1,4 +1,4 @@
-import { useReducer, useRef } from 'react';
+import { use, useEffect, useReducer, useRef } from 'react';
 import { Route, Routes } from 'react-router';
 
 import Diary from './pages/Diary';
@@ -6,14 +6,27 @@ import Eidt from './pages/Edit';
 import Home from './pages/Home';
 import NewDiary from './pages/NewDiary';
 import NotFound from './pages/NotFound';
-import { mockData, reducer } from './stores/diary_reducer';
+import { reducer } from './stores/diary_reducer';
 import { ProvideDiaryDispatchContext } from './stores/DiaryDispatchContext';
 import { ProvideDiaryContext } from './stores/DiaryStateContext';
 
 function App() {
-  const [data, dispatch] = useReducer(reducer, mockData);
-
+  const [data, dispatch] = useReducer(reducer, []);
   const idRef = useRef(data.length);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('diary');
+    if (!storedData) {
+      return;
+    }
+    const parsedData = JSON.parse(storedData);
+
+    dispatch({
+      type: 'INIT',
+      data: parsedData,
+    });
+  }, []);
+
   //새로운 일기 추가
   const onCreate = (createdDate, emotionId, content) => {
     dispatch({
