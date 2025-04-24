@@ -1,4 +1,4 @@
-import { use, useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import { Route, Routes } from 'react-router';
 
 import Diary from './pages/Diary';
